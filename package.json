@@ -31,6 +31,7 @@
     "uuid": "^8.3.2",
     "winston": "^3.7.2"
   }
+  # Pre-commit hooks: validate your code before a commit
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": "eslint --cache --fix",
     "*.{js,jsx,ts,tsx,css,md}": "prettier --write"
