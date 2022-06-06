@@ -1,17 +1,39 @@
 name: CI
 on:
-
+  # runs on pushes to the main branch
+  push:
+    branches: [nycu-lab-19]
+  # also runs inside pull requests that target the main branch
   pull_request:
+    branches: [nycu-lab-19]
 
-
+# 建立一個job
 jobs:
+  # 將此job的名稱設定為test
   test:
+    # 執行在最新版本的ubuntu上
     runs-on: ubuntu-latest
+    
     steps:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "14"
+          cache: "npm"
+      # install dependencies
       - run: npm ci
+      # run ESLint & Prettier
+      - run: npm run lint
+      - run: npm run prettier
+      # verify that there are no build errors
+      - run: npm run build
+      # run tests with Cypress
+      - name: Cypress run
+        uses: cypress-io/github-action@v2
+        with:
+          start: npm start
       - run: npm test
         env:
           Test: true
