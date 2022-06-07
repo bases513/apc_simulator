@@ -25,6 +25,7 @@ jobs:
       # install dependencies
       - run: npm ci
       # run Prettier
+      - run: npm run prettier
       - run: npm run format
       - run: git status
       - uses: mikeal/publish-to-github-action@master
