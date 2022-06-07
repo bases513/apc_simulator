@@ -4,7 +4,11 @@
   "description": "the project to simulate the APC scenario",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "lint-staged": {
+    "*.{js,jsx,ts,tsx}": "eslint --cache --fix",
+    "*.{js,jsx,ts,tsx,css,md}": "prettier --write"
+    }
   },
   "repository": {
     "type": "git",
@@ -30,9 +34,5 @@
     "node-cache": "^5.1.2",
     "uuid": "^8.3.2",
     "winston": "^3.7.2"
-  },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx}": "eslint --cache --fix",
-    "*.{js,jsx,ts,tsx,css,md}": "prettier --write"
   }
 }
